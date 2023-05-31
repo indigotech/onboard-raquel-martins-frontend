@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 ## Project Onboard Frontend
 
 ## Project's Description
@@ -13,4 +11,3 @@ Android Studio
 npm install
 npm run android
 npm run start
->>>>>>> c6c29a0 (refactor: Update readme)
