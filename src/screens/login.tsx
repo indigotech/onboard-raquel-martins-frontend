@@ -4,7 +4,7 @@ import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-nativ
 interface Input {
   value: string;
   isValid: boolean;
-  wasChanged: boolean;
+  shouldValidate: boolean;
 }
 
 const validateEmail = (email: string) => {
@@ -27,23 +27,23 @@ const validatePassword = (password: string) => {
 };
 
 const LoginScreen = () => {
-  const [email, setEmail] = useState({ value: '', isValid: false, wasChanged: false });
-  const [password, setPassword] = useState({ value: '', isValid: false, wasChanged: false });
+  const [email, setEmail] = useState({ value: '', isValid: false, shouldValidate: false });
+  const [password, setPassword] = useState({ value: '', isValid: false, shouldValidate: false });
 
   const checkFields = (email: Input, password: Input) => {
     const isValidEmail = validateEmail(email.value);
     const isValidPassword = validatePassword(password.value);
 
     if (isValidEmail) {
-      setEmail({ value: email.value, isValid: true, wasChanged: true });
+      setEmail({ value: email.value, isValid: true, shouldValidate: true });
     } else {
-      setEmail({ value: email.value, isValid: false, wasChanged: true });
+      setEmail({ value: email.value, isValid: false, shouldValidate: true });
     }
 
     if (isValidPassword) {
-      setPassword({ value: password.value, isValid: true, wasChanged: true });
+      setPassword({ value: password.value, isValid: true, shouldValidate: true });
     } else {
-      setPassword({ value: password.value, isValid: false, wasChanged: true });
+      setPassword({ value: password.value, isValid: false, shouldValidate: true });
     }
   };
 
@@ -53,23 +53,24 @@ const LoginScreen = () => {
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>E-mail</Text>
-        {email.isValid || !email.wasChanged ? null : <Text>Email inválido</Text>}
+
         <TextInput
           style={styles.input}
           value={email.value}
-          onChangeText={(newValue) => setEmail({ value: newValue, wasChanged: false, isValid: false })}
+          onChangeText={(newValue) => setEmail({ value: newValue, shouldValidate: false, isValid: false })}
         />
+        {email.isValid || !email.shouldValidate ? null : <Text>Email inválido</Text>}
       </View>
 
       <View style={styles.inputContainer}>
         <Text style={styles.label}>Senha</Text>
-        {password.isValid || !password.wasChanged ? null : <Text>Senha inválido</Text>}
         <TextInput
           style={styles.input}
           value={password.value}
-          onChangeText={(newValue) => setPassword({ value: newValue, wasChanged: false, isValid: false })}
+          onChangeText={(newValue) => setPassword({ value: newValue, shouldValidate: false, isValid: false })}
           secureTextEntry={true}
         />
+        {password.isValid || !password.shouldValidate ? null : <Text>Senha inválido</Text>}
       </View>
       <TouchableOpacity style={styles.button} onPress={() => checkFields(email, password)}>
         <Text style={styles.buttonText}>Entrar!</Text>
@@ -83,7 +84,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-
     padding: 20,
   },
   textHeader: {
