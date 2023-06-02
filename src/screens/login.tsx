@@ -1,30 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { validateEmail, validatePassword } from './validate-functions';
 
 interface Input {
   value: string;
   isValid: boolean;
   shouldValidate: boolean;
 }
-
-const validateEmail = (email: string) => {
-  const regexEmailValidation = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-  if (!regexEmailValidation.test(email) || email.length <= 0) {
-    return false;
-  } else {
-    return true;
-  }
-};
-
-const validatePassword = (password: string) => {
-  const regexPasswordValidation = /^([a-zA-Z0-9]+)$/;
-
-  if (password.length < 7 || password.length <= 0 || !regexPasswordValidation.test(password)) {
-    return false;
-  } else {
-    return true;
-  }
-};
 
 const LoginScreen = () => {
   const [email, setEmail] = useState({ value: '', isValid: false, shouldValidate: false });
@@ -59,7 +41,7 @@ const LoginScreen = () => {
           value={email.value}
           onChangeText={(newValue) => setEmail({ value: newValue, shouldValidate: false, isValid: false })}
         />
-        {email.isValid || !email.shouldValidate ? null : <Text>Email inválido</Text>}
+        {email.isValid || !email.shouldValidate ? null : <Text style={styles.captionText}>Email inválido</Text>}
       </View>
 
       <View style={styles.inputContainer}>
@@ -70,7 +52,7 @@ const LoginScreen = () => {
           onChangeText={(newValue) => setPassword({ value: newValue, shouldValidate: false, isValid: false })}
           secureTextEntry={true}
         />
-        {password.isValid || !password.shouldValidate ? null : <Text>Senha inválido</Text>}
+        {password.isValid || !password.shouldValidate ? null : <Text style={styles.captionText}>Senha inválido</Text>}
       </View>
       <TouchableOpacity style={styles.button} onPress={() => checkFields(email, password)}>
         <Text style={styles.buttonText}>Entrar!</Text>
@@ -84,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    padding: 20,
+    padding: 20
   },
   textHeader: {
     fontSize: 35,
@@ -92,7 +74,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     paddingBottom: 50,
-    paddingTop: 50,
+    paddingTop: 50
   },
   input: {
     height: 50,
@@ -100,13 +82,13 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#c8c8c8',
     padding: 10,
-    width: '100%',
+    width: '100%'
   },
   inputContainer: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     width: '100%',
-    paddingBottom: 30,
+    paddingBottom: 30
   },
   label: {
     alignItems: 'flex-start',
@@ -114,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     color: '#000000',
     paddingTop: 10,
-    fontSize: 16,
+    fontSize: 16
   },
 
   button: {
@@ -127,15 +109,23 @@ const styles = StyleSheet.create({
     margin: 18,
     borderRadius: 15,
     width: '100%',
-    height: 50,
+    height: 50
   },
   buttonText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'white',
+    color: 'white'
   },
+  captionText: {
+    color: 'red',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    paddingLeft: 15,
+    paddingTop: 5,
+    fontSize: 12
+  }
 });
 
 export default LoginScreen;
