@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    padding: 20
+    padding: 20,
   },
   textHeader: {
     fontSize: 35,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'bold',
     paddingBottom: 50,
-    paddingTop: 50
+    paddingTop: 50,
   },
   input: {
     height: 50,
@@ -82,13 +82,13 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: '#c8c8c8',
     padding: 10,
-    width: '100%'
+    width: '100%',
   },
   inputContainer: {
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
     width: '100%',
-    paddingBottom: 30
+    paddingBottom: 30,
   },
   label: {
     alignItems: 'flex-start',
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     color: '#000000',
     paddingTop: 10,
-    fontSize: 16
+    fontSize: 16,
   },
 
   button: {
@@ -109,14 +109,14 @@ const styles = StyleSheet.create({
     margin: 18,
     borderRadius: 15,
     width: '100%',
-    height: 50
+    height: 50,
   },
   buttonText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'white'
+    color: 'white',
   },
   captionText: {
     color: 'red',
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingLeft: 15,
     paddingTop: 5,
-    fontSize: 12
-  }
+    fontSize: 12,
+  },
 });
 
 export default LoginScreen;
